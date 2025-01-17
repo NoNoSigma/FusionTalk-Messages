@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Ban Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .ban-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="ban-container">
+        <h1>Admin Ban Page</h1>
+        <input type="text" id="username" placeholder="Enter username to ban">
+        <button onclick="banUser()">Ban User</button>
+    </div>
+
+    <script>
+        // Store banned users in localStorage for simplicity
+        const bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
+
+        function banUser() {
+            const username = document.getElementById('username').value.trim();
+            if (username) {
+                if (!bannedUsers.includes(username)) {
+                    bannedUsers.push(username);
+                    localStorage.setItem('bannedUsers', JSON.stringify(bannedUsers));
+                    alert(`${username} has been banned.`);
+                } else {
+                    alert(`${username} is already banned.`);
+                }
+            } else {
+                alert('Please enter a username.');
+            }
+        }
+    </script>
+</body>
+</html>

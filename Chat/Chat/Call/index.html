@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fullscreen Video</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+      overflow: hidden;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scaleX(-1); /* Mirrors the video feed horizontally */
+    }
+  </style>
+</head>
+<body>
+  <video id="userCamera" autoplay playsinline></video>
+  <script>
+    async function showCamera() {
+      try {
+        // Request access to the user's camera
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        
+        // Get the video element
+        const videoElement = document.getElementById('userCamera');
+        
+        // Assign the stream to the video element's srcObject
+        videoElement.srcObject = stream;
+      } catch (error) {
+        console.error("Error accessing the camera: ", error);
+        alert("Unable to access your camera. Please check your permissions.");
+      }
+    }
+
+    // Call the function to display the camera
+    showCamera();
+  </script>
+</body>
+</html>

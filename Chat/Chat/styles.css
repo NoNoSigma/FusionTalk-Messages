@@ -1,0 +1,23 @@
+.container {
+    max-width: 100%;
+    border-radius: 0%;
+
+}
+
+.btn {
+    isolation: isolate;
+    border-radius: 100%;
+}
+
+.text-danger {
+    isolation: isolate;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.time {
+    font-size: 0.7em;
+    color: #999;
+}
